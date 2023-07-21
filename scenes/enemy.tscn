@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhi2ny841eb"]
+
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_qoaqd"]
+[ext_resource type="Texture2D" uid="uid://bnhk3u371tbvl" path="res://sprites/mob1.png" id="2_vvcsd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1qt1x"]
+
+[node name="Enemy" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 2.66454e-15
+script = ExtResource("1_qoaqd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_vvcsd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_1qt1x")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
