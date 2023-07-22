@@ -5,6 +5,11 @@ var screen_size
 
 signal hit
 
+func start(pos):
+	position = pos
+	show()
+	$CollisionShape2D.disabled = false
+
 func _ready():
 	screen_size = get_viewport_rect().size
 	
