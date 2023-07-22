@@ -19,17 +19,18 @@ const MOB_TYPES = [{
 	"size": SizeTypes.MEDIUM
 }, {
 	"image": "res://sprites/mob3.png",
-	"scale": 2,
+	"scale": 2.5,
 	"value": 100,
 	"size": SizeTypes.LARGE
 }, {
 	"image": "res://sprites/mob4.png",
-	"scale": 2.5,
+	"scale": 3,
 	"value": 200,
 	"size": SizeTypes.XLARGE
 }]
 var rng = RandomNumberGenerator.new()
 var curr_mob_type
+
 
 func spawn(is_flipped, pos):
 	var random_mob_type = MOB_TYPES[rng.randi_range(0, MOB_TYPES.size() - 1)]
@@ -47,6 +48,7 @@ func spawn(is_flipped, pos):
 		$Sprite2D.scale = Vector2(scale, scale)
 		$CollisionShape2D.scale = Vector2(scale, scale)
 		linear_velocity = Vector2(randf_range(200.0, 300.0), 0.0)		
+
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
