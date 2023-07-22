@@ -1,9 +1,15 @@
 extends Area2D
 
 @export var speed = 480
+enum SizeTypes {
+	SMALL,
+	MEDIUM,
+	LARGE,
+	XLARGE
+}
 var screen_size
-
-signal hit
+var curr_score = 0
+var curr_size = SizeTypes.SMALL
 
 func start(pos):
 	position = pos
@@ -34,6 +40,28 @@ func _process(delta):
 	if velocity.x != 0:
 		$Sprite2D.flip_h = velocity.x < 0
 
-
 func _on_body_entered(body):
-	pass # Replace with function body.
+	eat_or_die(body)
+	
+func eat_or_die(enemy_fish):
+	if (curr_size < enemy_fish.curr_mob_type.size):
+		queue_free()
+	else:
+		curr_score += enemy_fish.curr_mob_type.value
+		$"../HUD".update_score(curr_score)
+		handle_player_scale_increase()
+		enemy_fish.queue_free()	
+	
+func handle_player_scale_increase():
+	if (curr_score <= 100):
+		return
+	if (curr_score > 100 && curr_score <= 1000):
+		curr_size = SizeTypes.MEDIUM
+		$Sprite2D.scale = Vector2(1.5, 1.5)
+	elif (curr_score > 1000 && curr_score < 10000):
+		curr_size = SizeTypes.LARGE
+		$Sprite2D.scale = Vector2(2, 2)
+	elif (curr_score > 10000 && curr_score <= 100000):
+		curr_size = SizeTypes.XLARGE
+		$Sprite2D.scale = Vector2(2.5, 2.5)
+	
