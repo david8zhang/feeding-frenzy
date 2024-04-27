@@ -57,6 +57,8 @@ func eat_or_die(enemy_fish):
 func handle_player_die():
 	hide()
 	$CollisionShape2D.disabled = true
+	curr_size = SizeTypes.SMALL
+	$Sprite2D.scale = Vector2(1, 1)
 	$"../".game_over()
 
 
@@ -64,6 +66,8 @@ func handle_player_win():
 	if (curr_score >= 10000):
 		hide()
 		$CollisionShape2D.disabled = true
+		curr_size = SizeTypes.SMALL
+		$Sprite2D.scale = Vector2(1, 1)
 		$"../".win()
 		
 
