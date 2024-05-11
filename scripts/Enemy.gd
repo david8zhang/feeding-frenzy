@@ -35,8 +35,7 @@ var curr_mob_type
 func spawn(is_flipped, pos):
 	var random_mob_type = MOB_TYPES[rng.randi_range(0, MOB_TYPES.size() - 1)]
 	curr_mob_type = random_mob_type
-	var image = Image.load_from_file(random_mob_type["image"])
-	var texture = ImageTexture.create_from_image(image)
+	var texture = load(random_mob_type["image"])
 	var scale = random_mob_type["scale"]
 	$Sprite2D.texture = texture
 	position = pos
